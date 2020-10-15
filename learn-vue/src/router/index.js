@@ -25,6 +25,11 @@ const routes = [
     name: 'page2',
     component: () => import(/* webpackChunkName: "about" */ '../views/learnStore/page2.vue')
   },
+  {
+    path: '/learnJavascript',
+    name: 'learnJavascript',
+    component: () => import(/* webpackChunkName: "about" */ '../views/learnJs')
+  },
 ]
 const router = new VueRouter({
   mode: 'history',

@@ -13,17 +13,14 @@
 
       <!-- body start  -->
       <section class="home-main">
-        <h3>
-        <router-link to="About">page1</router-link>
 
-        </h3>
-        <h3>
-        <router-link to="Home">page2</router-link>
-          
-        </h3>
+        <div  class="grid-gutter" v-for="listItem of list" :key="listItem.index">
+            <article  class="grid-box" v-for="item of listItem" :key="item.index">
+              <p @click="toRouter(item.name)">{{item.name}}</p>
+              <p>{{item.descript}}</p>
+            </article>
 
-
-        <router-view/>
+        </div>
       </section>
       <!-- body end -->
     </section>
@@ -39,14 +36,87 @@ export default {
     homeHeader,
   },
   data() {
+      const listData = [[
+        {
+          name: 'Css',
+          icon: '',
+          descript: '样式'
+        },
+          {
+          name: 'html',
+          icon: '',
+          descript: '标签'
+        },
+          {
+          name: 'Javascript',
+          icon: '',
+          descript: '初级',
+          path: '/learnJs'
+        }],[
+          {
+          name: 'vue',
+          icon: '',
+          descript: ''
+        },
+          {
+          name: 'Javascript',
+          icon: '',
+          descript: '脚本'
+        }],[
+          {
+          name: 'html',
+          icon: '',
+          descript: '标签'
+        },
+          {
+          name: 'Javascript',
+          icon: '',
+          descript: '脚本'
+        },
+        
+          {
+          name: 'Reg',
+          icon: '',
+          descript: '正则'
+        }],[
+          {
+          name: 'Vue',
+          icon: '',
+          descript: '框架'
+        },
+          {
+          name: 'node',
+          icon: '',
+          descript: '后台服务'
+        },
+          {
+          name: 'mysql',
+          icon: '',
+          descript: '数据库'
+        },
+          {
+          name: 'java',
+          icon: '',
+          descript: 'JAVA'
+        }
+      ]]
+
     return {
       // 菜单宽度
       asideWidth: "220px",
-      showfold: true
+      showfold: true,
+      list: listData
     };
   },
   created() {},
   methods: {
+    // 跳转页面
+    toRouter(val) {
+      console.log(val);
+      this.$router.push({
+        path: '/learn' + val
+      })
+    },
     handlefold() {
       this.showfold = this.showfold == false ? true : false;
     },
@@ -59,6 +129,12 @@ export default {
   background-color: #ededed;
 }
 
+
+// 选中部分背景色不变
+p::selection {
+    background: transparent;
+}
+
 .el-header {
   background-color: #b3c0d1;
   color: #333;
@@ -67,7 +143,7 @@ export default {
 .header-tag {
   position: fixed;
   top: 10px;
-  right: 10px;
+  left: 10px;
 
   font-size: 14px;
   padding: 10px;
@@ -84,9 +160,42 @@ export default {
 
 
 .home-main {
-  h3 {
-    text-align: left;
-    padding: 10px 0 0 10px;
+  text-align: left;
+  padding: 10px 20px;
+  
+
+  .grid-gutter {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-row-gap: 20px;
+      grid-column-gap: 20px;
+    margin-bottom: 20px;
+
   }
+  .grid-box {
+    padding: 10px 25px;
+    background-color: #008cff;
+    height: 300px;
+
+    p:first-child{
+      height: 270px;
+      line-height: 270px;
+      font-size: 32px;
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+
+    }
+    p:last-child {
+      height: 30px;line-height: 30px;
+      text-align: center;
+      color: #333;
+    }
+  }
+  .grid-box:nth-of-type(4n) { background-color:rgb(7,178, 91); }
+  .grid-box:nth-of-type(4n+1) { background-color:rgb(114, 32, 114); }
+  .grid-box:nth-of-type(4n+2) { background-color: rgb(197, 177, 64); }
+  .grid-box:nth-of-type(4n+3) { background-color: rgb(57, 64, 119); }
+
 }
 </style>
