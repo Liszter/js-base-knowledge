@@ -30,6 +30,11 @@ const routes = [
     name: 'learnJavascript',
     component: () => import(/* webpackChunkName: "about" */ '../views/learnJs')
   },
+  {
+    path: '/learnES',
+    name: 'learnES',
+    component: () => import(/* webpackChunkName: "about" */ '../views/learnES')
+  },
 ]
 const router = new VueRouter({
   mode: 'history',

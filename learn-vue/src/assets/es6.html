@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h2 class="page-header">
+            点击切换颜色
+        </h2>
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+    </div>    
+</body>
+<script>
+// 拖拽
+
+// 1 let 
+    let divClass = document.getElementsByClassName('item');
+    console.log(divClass);
+
+    for(let i = 0; i < divClass.length; i ++) {
+
+        divClass[i].onclick = function () {
+            divClass[2].style.background = 'pink';
+        }
+    }
+
+// 当定义数组 对象为常量时。 是可以修改内部的值的
+
+    const XXX = [1, 2, 3];
+    XXX.push(123);
+    console.log(XXX);
+
+// 解构赋值
+let obj = {
+    name: '1',
+    age: '2',
+    getName: function () {
+        console.log(1);
+    }
+}
+
+// 调用getName
+obj.getName();
+// 使用结构
+let {getName} = obj;
+// 再次调用getName
+getName();
+
+
+// 模板语法
+let sd = 11;
+let cc = `asdasd   qw${sd}`;
+console.log(typeof cc);
+
+
+// 简化对象写法
+let name = 1, age = 2;
+let obj3 = {
+    name, age
+}
+    // 对于函数
+    let obj1 = {
+        name,
+        age,
+        getName: function() {
+
+        }
+    }
+    // 简写后
+    let obj2 = {
+        name,
+        age,
+        getName() {
+
+        }
+    }
+
+
+
+    // 箭头函数
+    let fn = function(a, b) {
+
+    }
+
+    let fn1 = (a, b) => {
+        return a+b
+    }
+
+    // 1. this是静态的， this始终指向函数声明时所在作用域选的this的值
+    let getNames = function () {
+        console.log(this.name);
+    }
+
+    let getNames1 = () => {
+        console.log(this.name);
+    }
+
+    // 设置 window 对象的 name 属性
+    window.name = 'wq';
+    const person = {
+        name: 'liszt'
+    };
+
+    // 调用 call  来改变this
+
+    getNames.call(window);
+    getNames1.call(person);
+
+    // 2. 不能作为构造实例化对象
+            // let PersonAA = (name) => {
+            //     this.name = name;
+            // };
+            // let me = new PersonAA('aaa');
+
+            // console.log(me);
+            // PersonAA is not a constructor
+    // 3 不能使用arguments 变量  其未定义
+    
+    // 4 箭头函数简写
+            // 1省略小括号 （形参有且只有一个的时候）
+            // let add = n => {
+            //     return n + n;
+            // }
+
+            // 代码体语句只有一句时， 可以省略花括号
+            let pow = n => n ++;
+
+    
+
+
+    divClass[0].onclick = function() {
+        let self = this;
+        setTimeout(function() {
+            self.style = "background: red";
+        }, 2000);
+    }
+
+        // 箭头函数适合与this 无关的回调， 定时器， 数组的方法回调
+        // 不适合与this有关的回调， 事件回调 对象的方法。
+        // 对象的方法
+            let aaa = {
+                name: '1111',
+                getName: () => {
+                    this.name // 此处的this是 window 
+                }
+            }
+
+
+
+    // es6 允许给函数赋初始值
+    function add(a, b, c=9) {
+        return a+b+c;
+    }
+    let res = add(1, 2, 3);
+    console.log(res);
+
+
+    // es6 引入rest 参数， 用于获取函数的实参，用来代替 arguments
+    //   es5 获取实参的方法
+    function date(...args) {
+        console.log(args);  // [1, 2, 3]
+    }
+    date(1, 2, 3);
+
+
+
+
+    // ... 运算符能将【数组】转换成逗号分隔的 【参数序列】
+    const tfboys = [1, 2, 34];
+    function xxx () {
+        console.log(arguments);
+    }
+
+    xxx(...tfboys); // xxx('1', '2', '34');
+
+
+    // promise
+    let proDemo = new Promise(function(resolve, reject) {
+        if (false) {
+            resolve([1,2,3])
+        } else {
+            reject([2, 4])
+        }
+    })
+
+    proDemo.then(res => {
+        console.log(res);
+    })
+    .catch(err => {
+        console.log(err);
+    })
+
+
+    // 封装AJAX
+    // let getWether = new Promise(function (reject, resolve) {
+    //     var xhr = new XMLHttpRequest();
+    //     xhr.onreadystatechange = function(){
+    //     if (xhr.readyState == 4){
+    //         if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304){
+    //             resolve(xhr.responseText);
+    //         } else {
+    //             reject("Request was unsuccessful: " + xhr.status);
+    //         }
+    //     }
+    //     };
+    //     xhr.open("get", "http://wthrcdn.etouch.cn/weather_mini?city=%E5%8C%97%E4%BA%AC", true);
+    //     xhr.send(null);
+    //  })
+
+
+
+    //  getWether.then(res => {
+    //      console.log(JSON.parse(res))
+    //  })
+    //  .catch(err => {
+    //      console.log(err)
+    //  })
+  
+
+
+
+    //  let ppp = new Promise((resolve, reject) => {
+    //      setTimeout(() => {
+    //         resolve('用户数据');
+    //      }, 1000)
+    //  });
+
+    //  // 调用 then 方法
+    //  ppp.then(res => {
+    //      console.log(res);
+    //      return new Promise((resolve, reject) => {
+    //          resolve('ok')
+    //      })
+    //  })
+    //  .catch(err => {
+    //      console.log(err);
+    //  })
+
+
+
+console.log('---------------');
+     // 链式
+    //  let  pp1 = new Promise(function (resolve, reject) { 
+    //      setTimeout(()=>{
+    //         resolve('白日依山尽')
+    //      }, 1000)
+    //   })
+
+
+    // pp1.then(res => {
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(()=>{
+    //         resolve(res + '黄河入海流')
+    //      }, 1000)
+    //     })
+    
+    // })
+    // .then(res => {
+    //     return new Promise((resolve, reject)=>{
+    //         setTimeout(()=> {
+    //             resolve(res + '欲穷千里目')
+    //         }, 200)
+    //     })
+    // })
+    // .then(res => {
+    //     console.log(res);
+    // })
+    // .catch(err => {
+    //     console.log(err);
+    // })
+
+
+
+    // 使用 async
+
+    async function helloAsync(){
+        return new Promise((resolve, reject) => {
+            if (true) {
+                resolve(1)
+            } else {
+                reject(123)
+            }
+        })
+    }
+    let asyncHello = helloAsync()
+
+    console.log(asyncHello);
+
+    asyncHello.then(res => {
+        console.log(res);
+    })
+    .catch(err => {
+        console.log(err);
+    })
+
+
+
+    function testAwait() {
+        return new Promise((resolve) => {
+            setTimeout(function() {
+                console.log('test await');
+                resolve();
+            }, 1000);
+        });
+    }
+
+    async function hello() {
+        await testAwait();
+        console.log('hello哎哎哎');
+    }
+    
+    hello()
+
+</script>
+<style>
+    .item {
+        width: 50px;
+        height: 20px;
+        display: inline-block;
+        margin: 0 20px;
+        border: solid 1px  red;
+    }
+</style>
+</html>

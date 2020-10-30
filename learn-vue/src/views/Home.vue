@@ -16,7 +16,7 @@
 
         <div  class="grid-gutter" v-for="listItem of list" :key="listItem.index">
             <article  class="grid-box" v-for="item of listItem" :key="item.index">
-              <p @click="toRouter(item.name)">{{item.name}}</p>
+              <p @click="toRouter(item.path)">{{item.name}}</p>
               <p>{{item.descript}}</p>
             </article>
 
@@ -48,10 +48,10 @@ export default {
           descript: '标签'
         },
           {
-          name: 'Javascript',
+          name: 'ES6',
           icon: '',
-          descript: '初级',
-          path: '/learnJs'
+          descript: 'ES',
+          path: 'ES'
         }],[
           {
           name: 'vue',
