@@ -1,4 +1,4 @@
-const axiosRequest = 'http://172.20.6.197:7080'
+const axiosRequest = 'http://localhost'
 
 const pkg = require('./package.json')
 const name = pkg.name || 'learning' // page title

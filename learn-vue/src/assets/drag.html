@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app1 {
+            width: 100px; height: 100px;
+            border: 1px solid #333;
+        }
+        #app2 {
+            width: 30px; height: 30px;
+            background-color: #008cff;
+        }
+
+        #app3 {
+            width: 30px; height: 30px;
+            background-color: #008cff;
+        }
+    </style>
+</head>
+<body>
+    <div id="app1"
+        ondragover="dragover(event)"
+        ondragleave="dragleave()"
+        ondrop="drop(event)"
+        ondragenter="dragenter()"
+    >
+
+    </div>
+    <div id="app2"
+        draggable="true"
+        ondragstart="dragstart(event)"
+        ondrag="drag"
+        ondragend="dragend(event)"
+    >
+1
+</div>
+    <div id="app3"
+    draggable="true"
+    ondragstart="dragstart(event)"
+    ondrag="drag"
+    ondragend="dragend(event)"
+>
+2
+    </div>
+</body>
+<script>
+
+    // 被拖拽对象
+    function dragstart(event) {
+        console.log('用户开启拖动元素时触发');
+        event.dataTransfer.setData('Text', event.target.id);
+
+    }
+
+    function drag() {
+        console.log('元素正在拖动时触发');
+    }
+
+    function dragend(event) {
+        console.log('用户完成元素拖动后触发');
+    }
+
+
+
+    // 目标位置
+   function dragover (event) {
+       console.log('范围内拖动         时触发此事件');
+       event.preventDefault();
+   }
+   function dragenter () {
+       console.log('进入      容器时触发');
+   }
+   function dragleave () {
+       console.log('离开时      触发');
+   }
+   function drop (event) {
+       console.log('拖动过程中，释放鼠标时触发的事件');
+
+       event.preventDefault();
+       var data = event.dataTransfer.getData("Text");
+         event.target.appendChild(document.getElementById(data));
+   }
+  
+</script>
+</html>

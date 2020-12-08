@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 1   event queue
+    // console.log("Start");
+    // // 宏任务 1
+    // setTimeout(function(){
+    //     console.log("SetTimeout");
+    // },0);
+    // new Promise(function(resolve,reject){
+    // // 微任务 1
+
+    //         console.log("Promise");
+    //     resolve();
+    // }).then(function(){
+    // console.log("Then");
+    // });
+    
+    // console.log("End");
+
+
+    console.log('-----------------');
+
+    // function first() {
+    //     setTimeout(()=> {
+    //         console.log(1);
+    //     }, 2000)
+    // }
+
+    // function sec () {
+    //     console.log(2);
+    // }
+
+    // first();
+    // sec();
+
+    
+
+
+function pp1 (callback) {
+    setTimeout(()=>{
+        console.log(1);
+    }, 2000);
+
+    callback();
+}
+
+function pp2() {
+    console.log(2);
+}
+
+pp1(pp2);
+
+
+
+    </script>
+</html>

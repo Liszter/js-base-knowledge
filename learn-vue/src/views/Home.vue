@@ -50,18 +50,25 @@ export default {
           {
           name: 'ES6',
           icon: '',
-          descript: 'ES',
-          path: 'ES'
+          descript: 'ES6',
+          path: 'ES6'
         }],[
           {
           name: 'vue',
           icon: '',
           descript: ''
         },
+        {
+          name: 'Element',
+          icon: '',
+          descript: 'Element',
+          path: 'Element'
+        },
           {
           name: 'Javascript',
           icon: '',
-          descript: '脚本'
+          descript: 'Js',
+          path: 'Js'
         }],[
           {
           name: 'html',

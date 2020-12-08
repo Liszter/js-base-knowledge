@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .main-page {
+      width: 60vw;
+      height: 40vh;
+      border: solid 2px #ededed;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      
+    }
+    ul {
+      list-style-type: none;
+      display: flex;
+      align-items: center;
+    }
+    li {
+      min-width: 60px;
+      padding: 20px;
+      background-color: #efefef;
+      position: relative;
+    }
+    .close-icon {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      text-align: center;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 50%;
+      background-color: #008800;
+    }
+    .li-active {
+      background-color: #ccc;
+    }
+    section {
+      display: none;
+    }
+    .con-active {
+      display: block;
+      background-color: #ccc;
+    }
+    .tabadd {
+      text-align: center;
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main-page" id="tab">
+    <div class="tabs-box" >
+
+      <nav>
+        <div>
+          <ul>
+            <li>
+              <span>测试0</span>
+              <span class="close-icon">-</span>
+            </li>
+          </ul>
+        </div>
+        <div class="tabadd">
+          <span>+</span>
+        </div>
+      </nav>
+    </div>
+    <div class="table-item">
+      <section>测试1</section>
+    </div>
+  </div>
+</body>
+<script>
+  var that;
+  var num = 0; // 计数器
+
+  class Tab {
+    constructor(id) {
+      that = this;
+
+      // 获取大盒子
+      this.main = document.querySelector(id);
+      // 获取li的子节点
+      this.ul = this.main.querySelectorAll('ul')[0];
+      // 获取li
+      this.lis = this.main.querySelectorAll('li');
+      // section
+      this.sectionsBox = this.main.querySelector('.table-item');
+
+      this.sections = this.main.querySelectorAll('section');
+      this.add = this.main.querySelector('.tabadd');
+      // 获取close-icon
+      this.closeBtn = this.main.querySelectorAll('.close-icon');
+      
+      // 自动运行init
+      this.init()
+
+      // 获取add
+    }
+      // 清除
+        clearClass () {
+          for (let i = 0; i < that.lis.length; i++) {
+            that.lis[i].className = ''
+            that.sections[i].className = ''
+          }
+        }
+        // 重新获取lis sections
+        reBuildDom () {
+       // 获取li的子节点
+       this.ul = this.main.querySelectorAll('ul')[0];
+      // 获取li
+      this.lis = this.main.querySelectorAll('li');
+      // section
+      this.sectionsBox = this.main.querySelector('.table-item');
+
+      this.sections = this.main.querySelectorAll('section');
+      this.add = this.main.querySelector('.tabadd');
+       // 获取close-icon
+       this.closeBtn = this.main.querySelectorAll('.close-icon');
+        }
+        // 初始化相关元素绑定事件
+        init() {
+          //  for 循环为 每个li 添加一个click事件
+          for(let i = 0; i < this.lis.length; i++) {
+            this.lis[i].index = i;  // 这一步的作用是？？？
+            this.lis[i].onclick = this.toggleTab;
+            this.closeBtn[i].onclick = this.removeTab;
+          }
+          // add按钮绑定一个事件
+          this.add.onclick = that.addTab;
+        }
+
+
+    // 1 切换 
+    toggleTab () {
+      that.clearClass()
+      // 重置
+      console.log(this);
+      this.className = 'li-active';
+      that.sections[this.index].className = 'con-active'
+    }
+    // 添加
+    addTab () {
+      // 清除样式
+      num++
+      that.clearClass()
+
+      // 创建一个tab 一个section
+      let tab = `<li class="li-active"><span>测试${num}</span><span class="close-icon">-</span></li>`;
+      that.ul.insertAdjacentHTML('beforeend', tab);
+
+      let sections = `<section class="con-active">新的测试${num}</section>`;
+      that.sectionsBox.insertAdjacentHTML('beforeend', sections)
+      // 添加完重新  怎么更新 construct里面的东西呢
+      that.reBuildDom()
+      that.init()
+    }
+    // 删除
+     removeTab () {
+      event.stopPropagation();
+      let index = this.parentNode.index;
+      that.lis[index].remove();
+      that.sections[index].remove();
+      that.reBuildDom();
+      that.init();
+
+    }
+    // 修改
+    editTab() {
+
+    }
+  }
+
+  new Tab('#tab');
+
+</script>
+
+</html>

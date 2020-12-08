@@ -25,19 +25,24 @@ const routes = [
     name: 'page2',
     component: () => import(/* webpackChunkName: "about" */ '../views/learnStore/page2.vue')
   },
-  {
-    path: '/learnJavascript',
-    name: 'learnJavascript',
-    component: () => import(/* webpackChunkName: "about" */ '../views/learnJs')
-  },
-  {
-    path: '/learnES',
-    name: 'learnES',
-    component: () => import(/* webpackChunkName: "about" */ '../views/learnES')
-  },
+
+
+  
+  // js
+  { path: '/learnJs', name: 'learnJs', component: () => import('../views/learnJs') },
+  { path: '/learnJs/1_1', name: 'tryCatch用法', component: () => import('../views/learnJs/pages/1_1.vue')},
+  { path: '/learnJs/1_2', name: 'promise', component: () => import('../views/learnJs/pages/1_2.vue')},
+  // es6
+  { path: '/learnES6', name: 'learnES6', component: () => import(/* webpackChunkName: "about" */ '../views/learnES6')},
+  { path: '/learnES6/1_1', name: 'class用法', component: () => import('../views/learnES6/pages/1_1.vue')},
+  { path: '/learnES6/1_2', name: 'class用法', component: () => import('../views/learnES6/pages/1_2.vue')},
+
+  { path: '/learnElement', name: 'learnElement', component: () => import(/* webpackChunkName: "about" */ '../views/learnElement')},
+  { path: '/learnElement/1_1', name: 'class用法', component: () => import('../views/learnElement/pages/1_1.vue')},
+  { path: '/learnElement/1_2', name: 'class用法', component: () => import('../views/learnElement/pages/1_2.vue')}
 ]
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes
 })

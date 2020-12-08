@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .main-page {
+      width: 60vw;
+      height: 40vh;
+      border: solid 2px #ededed;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="main-page">
+    <div class="table-nav">
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+      </ul>
+    </div>
+    <div class="table-item">
+      1
+    </div>
+
+    <button>Click</button>
+  
+  </div>
+</body>
+<script>
+  var that
+  class Tag {
+    constructor(name, age) {
+      that = this
+      // constructor 里面的this 指向的是创建的实例对象
+      // 函数中的this 指向调用者
+      this.name = name;
+      this.age = age;
+      this.getAge = function () {
+        console.log(this.age);
+      }
+      
+      this.btn = document.querySelector('button');
+        // 函数中的this 指向调用者
+      this.btn.onclick = this.getName;
+    }
+    getName() {
+      console.log(that.name);
+    }
+  }
+
+let ttg = new Tag(1, 2);
+
+
+  // class TagsChild extends Tag {
+  //   constructor (a, b) {
+  //     super(a, b)
+  //   }
+
+  //   // 调用父类中的普通函数  super
+  //   // super.getName()
+  //   getName () {
+  //     console.log(123333);
+  //   }
+  // }
+
+</script>
+
+</html>
