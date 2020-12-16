@@ -2,7 +2,7 @@
   <div class="main-page">
     <page-fram title="class用法">
       <div>
-      
+         <pdf src="https://cdn.mozilla.net/pdfjs/tracemonkey.pdf"></pdf>
      </div>
     </page-fram>
   </div>
@@ -11,10 +11,12 @@
 <script>
 import pageFram from "@/components/common/page-fram.vue";
 
+import pdf from 'vue-pdf'
 
 export default {
   components: {
-    pageFram
+    pageFram,
+    pdf
    },
   data () {
     return {
