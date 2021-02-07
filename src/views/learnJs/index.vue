@@ -28,6 +28,13 @@ export default {
             { type: "success", label: "标签二", url: '2' },
           ],
         },
+          {
+          id: 3,
+          title: "canvas",
+          items: [
+            { type: "success", label: "标签三", url: '1_3' },
+          ],
+        },
       ],
     };
   },

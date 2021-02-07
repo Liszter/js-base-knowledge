@@ -32,6 +32,7 @@ const routes = [
   { path: '/learnJs', name: 'learnJs', component: () => import('../views/learnJs') },
   { path: '/learnJs/1_1', name: 'tryCatch用法', component: () => import('../views/learnJs/pages/1_1.vue')},
   { path: '/learnJs/1_2', name: 'promise', component: () => import('../views/learnJs/pages/1_2.vue')},
+  { path: '/learnJs/1_3', name: 'canvas', component: () => import('../views/learnJs/pages/1_3.vue')},
   // es6
   { path: '/learnES6', name: 'learnES6', component: () => import(/* webpackChunkName: "about" */ '../views/learnES6')},
   { path: '/learnES6/1_1', name: 'class用法', component: () => import('../views/learnES6/pages/1_1.vue')},
