@@ -1,8 +1,9 @@
 <template>
   <div class="main-page">
     <page-fram title="canvas的用法">
-      <el-button @click="clear">清空画布</el-button>
+       <el-divider content-position="left">基础线条</el-divider>
 
+      <el-button @click="clear">清空画布</el-button>
       <el-button @click="operate(rectangle)">矩形</el-button>
       <el-button @click="operate(rectBorder)">矩形加边框</el-button>
       <el-button @click="operate(drawline)">线条</el-button>
@@ -10,12 +11,18 @@
       <el-button @click="operate(drawCicle)">圆和弧</el-button>
       <el-button @click="operate(drawFont)">文字</el-button>
       <el-button @click="operate(barrage)">弹幕效果</el-button>
-      <el-button @click="handleClick">矩形</el-button>
-      <el-button @click="handleClick">矩形</el-button>
 
 
+       <el-divider content-position="left">图片操作</el-divider>
+            <el-button @click="operate(drawBaseImage)">绘制图片</el-button>
+            <el-button @click="operate(watermark)">图片添加水印</el-button>
+            <el-button @click="operate(imageScale)">图片缩放</el-button>
+            <el-button @click="operate(imageCrop)">图片剪切</el-button>
 
+      <el-divider content-position="left">钟表</el-divider>
+       <el-button @click="operate(drawClock)">钟表</el-button>
 
+      
       <div class="canvas-box">
         <canvas ref="canvasDom" width="400" height="300"></canvas>
       </div>
@@ -133,19 +140,62 @@ export default {
       ctx.font = "20px sans-serif"
       let i = 300
       let that = this
-      let ccc = setInterval(function () {
+      let setInit = setInterval(function () {
         that.clear()
         i -= 3
-        ctx.fillText("天若有情", i, 100);
-        console.log(i);
+        ctx.fillText("666", i, 100);
       }, 17)
-      ccc()
       setTimeout(function () {
-        ccc.clearInterval()
-      }, 1000)
+        clearInterval(setInit)
+      }, 5000)
       
     },
+    // 画图
+    drawBaseImage () {
+      let ctx = this.ctx
+      let img = new Image()
+      img.src = 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg'
+      img.onload = function(){
+        ctx.drawImage(img, 0, 0)
+      }
+    },
+    // 水印 
+    watermark () {
+      let ctx = this.ctx
+      let img = new Image()
+      img.src = 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg'
+      img.onload = function () {
+        ctx.drawImage(img, 0, 0)
+        ctx.fillText('Liszter', 360, 280)
+      }
+    },
+    // 缩放
+    imageScale () {
+      let ctx = this.ctx
+      let img = new Image()
+      img.src = 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg'
+      img.onload = function () {
+        ctx.drawImage(img, 0, 0, 400,300) // 缩放  自定义大小
+      }
+    },
+    // 图像裁剪
+    imageCrop () {
+      let ctx = this.ctx
+      let img = new Image()
+      img.src = 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg'
+      img.onload = function () {
+        ctx.drawImage(img, 100, 100, 130, 130, 0, 0, 400,300) // 缩放  自定义大小
+      }
+    },
+    // 视频播放
+    vadioPlayer () {
+      
 
+    },
+    // 钟表
+    drawClock () {
+      
+    },
     handleClick () {
 
     }
