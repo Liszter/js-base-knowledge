@@ -32,7 +32,8 @@ export default {
           id: 3,
           title: "canvas",
           items: [
-            { type: "success", label: "标签三", url: '1_3' },
+            { type: "success", label: "画图基础", url: '1_3' },
+            { type: "success", label: "canvas自定义绘画", url: '1_4' },
           ],
         },
       ],
