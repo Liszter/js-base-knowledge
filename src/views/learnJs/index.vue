@@ -23,17 +23,20 @@ export default {
         },
         {
           id: 2,
-          title: "操作dom2",
+          title: "面向对象js",
           items: [
-            { type: "success", label: "标签二", url: '2' },
+            { type: "success", label: "原型链", url: '2_1' },
+            { type: "success", label: "eventLoop", url: '2_2' },
+            { type: "success", label: "继承", url: '2_3' },
+            { type: "success", label: "max和min", url: '2_4' },
           ],
         },
           {
           id: 3,
           title: "canvas",
           items: [
-            { type: "success", label: "画图基础", url: '1_3' },
-            { type: "success", label: "canvas自定义绘画", url: '1_4' },
+            { type: "success", label: "画图基础", url: '3_1' },
+            { type: "success", label: "canvas自定义绘画", url: '3_2' },
           ],
         },
       ],

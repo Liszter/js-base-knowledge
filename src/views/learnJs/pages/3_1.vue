@@ -121,7 +121,7 @@ export default {
       ctx.beginPath();
       ctx.arc(200, 150, 100, Math.PI * 2, false);
       ctx.closePath();
-      ctx.stroke();
+      ctx.fill();
 
       ctx.beginPath();
       ctx.arc(200, 150, 50, Math.PI, false);

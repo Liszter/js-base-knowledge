@@ -33,7 +33,8 @@ module.exports = {
       alias: {
         'xxComponents': '@/components',
         'xxApi': '@/api',
-        'xxStyle': '@/styles'
+        'xxStyle': '@/styles',
+        'vue$': 'vue/dist/vue.common'
       }
     }
   }
