@@ -39,6 +39,13 @@ export default {
             { type: "success", label: "canvas自定义绘画", url: '3_2' },
           ],
         },
+                {
+          id: 4,
+          title: "algorithm",
+          items: [
+            { type: "success", label: "算法入门", url: '4_1' },
+          ],
+        },
       ],
     };
   },

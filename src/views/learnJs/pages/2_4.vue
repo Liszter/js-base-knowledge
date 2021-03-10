@@ -2,8 +2,15 @@
   <div class="main-page">
     <page-fram title="算法测试">
       <el-button @click="getMaxAndMin">arrMaxAndMin</el-button>
+      <el-button @click="getThis">getThis</el-button>
       <el-button @click="handleFun(isPalindrome)">isABCCBA</el-button>
       <el-button @click="replacement('11112222200001123', '1', '0')">replacement(1, 0)</el-button>
+
+      <el-divider content-position="left">算 法</el-divider>
+ 
+    <div id="borderBox" class="box"></div>
+    <div id="contentBox" class="box"></div>
+    
     </page-fram>
   </div>
 </template>
@@ -19,9 +26,7 @@ export default {
   created() {},
   methods: {
     getMaxAndMin() {
-      console.log(arr);
-
-      arr.prototype.max = function () {
+      Array.prototype.max = function () {
         let arr = this;
         if (arr.length === 0) return;
 
@@ -33,7 +38,7 @@ export default {
         }
         return max;
       };
-      arr.prototype.min = function () {
+      Array.prototype.min = function () {
         // this
         let arr = this;
         if (arr.length === 0) return;
@@ -69,20 +74,44 @@ export default {
        * @return 字符串
        * **/
 
-        let arr = str.split("")
-        for (let i = 0; i < arr.length; i++) {
-          const element = arr[i]
-          if (arr[i] == replace2) {
-            arr[i] = replace1
-          } else if (arr[i] == replace1)  {
-            arr[i] = replace2
-          }
+      let arr = str.split("");
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i] == replace2) {
+          arr[i] = replace1;
+        } else if (arr[i] == replace1) {
+          arr[i] = replace2;
         }
-        return arr.join('')
+      }
+      return arr.join("");
+    },
+
+    getThis() {
+     
     }
   },
 };
 </script>
 <style lang='less' scoped>
+.el-button {
+  margin-bottom: 10px;
+}
 
+
+
+   .box {
+        width: 10px;
+        height: 10px;
+        border: 1px solid red;
+        margin: 2px;
+        padding: 2px;
+        background: blue;
+      }
+
+      #borderBox {
+        box-sizing: border-box;
+      }
+
+      #contentBox {
+        box-sizing: content-box;
+      }
 </style>
