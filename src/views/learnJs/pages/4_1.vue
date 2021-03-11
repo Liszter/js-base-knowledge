@@ -36,9 +36,7 @@
           }}</el-button>
         </template>
       </el-card>
-    </page-fram>
-
-    <el-divider content-position="left">5. 单向链表</el-divider>
+      <el-divider content-position="left">5. 单向链表</el-divider>
       <el-card class="box-card">
         <template v-for="(item, index) of links">
           <el-button :key="index" @click="link(item.value)">{{
@@ -206,16 +204,192 @@ export class PriorityQueue extends Queue {
     isEmpty() 如果链表中不包含任何元素，返回 trun，如果链表长度大于 0 则返回 false。
     size() 返回链表包含的元素个数，与数组的 length 属性类似。
     toString() 由于链表项使用了 Node 类，就需要重写继承自 JavaScript 对象默认的 toString 方法，让其只输出元素的值。
- * **/ 
-class LinkedList  {
-  // 初始长度
-  length = 0
-  // 初始项
-  header = null
-  // 内部类
-  
+ * **/
 
+class LinkedList {
+  // 链表属性
+  // 长度   length
+  // 头部   head
+  length = 0;
+  head = null;
+  // 内部类
+  Node = class {
+    constructor(data) {
+      this.data = data;
+      this.next = null;
+    }
+  };
+
+  // 尾部添加
+  append(element) {
+    let newNode = new this.Node(element);
+    if (this.length == 0) {
+      this.head = newNode;
+    } else {
+      let currentNode = this.head;
+      while (currentNode.next != null) {
+        currentNode = currentNode.next;
+      }
+      currentNode.next = newNode;
+    }
+
+    this.length++;
+  }
+  // 任意节点处添加 insert(position, element)
+  insert(position, element) {
+    let newNode = new this.Node(element);
+    if (position > this.length) return;
+    if (position == 0) {
+      newNode.next = this.head;
+      this.head = newNode;
+    } else {
+      let currentNode = this.head;
+      let previouNode = null;
+      while (position--) {
+        previouNode = currentNode;
+        currentNode = currentNode.next;
+      }
+      previouNode.next = newNode;
+      newNode.next = currentNode;
+    }
+    this.length++;
+  }
+  //  get(position) 获取对应位置的元素。
+  get(position) {
+    // 位置大于长度 或者小于0
+    if (position > this.length || position < 0) return -1;
+    let currentNode = this.head;
+    while (position--) {
+      currentNode = currentNode.next;
+    }
+    return currentNode.data;
+  }
+  // indexOf(element) 返回元素在链表中的索引。如果链表中没有该元素就返回-1。
+  indexOf(element) {
+    let currentNode = this.head;
+    let index = 0;
+    while (currentNode != null) {
+      index++;
+      currentNode = currentNode.next;
+      if (currentNode.data == element) {
+        return index;
+      }
+    }
+    return -1;
+  }
+  // update(position, element) 修改某个位置的元素。
+  update(position, element) {
+    let currentNode = this.head;
+
+    if (position > this.length) return;
+
+    if (position == 0) {
+      this.head.data = element;
+    } else {
+      while (position--) {
+        currentNode = currentNode.next;
+      }
+      currentNode.data = element;
+    }
+  }
+  // removeAt(position) 从链表的特定位置移除一项。
+  removeAt(position) {
+    if (position > this.length) return;
+
+    if (position < 2) {
+      this.head = this.head.next;
+    } else {
+      let flag = position - 1;
+      // 前一个
+      let previousNode = this.head;
+      while (flag--) {
+        previousNode = previousNode.next;
+      }
+      previousNode.next = previousNode.next.next;
+    }
+    this.length--
+  }
+    // remove() 删除指定 data 的节点
+  remove(data) {
+    this.removeAt(this.indexOf(data));
+  }
+
+  // isEmpty() 判断链表是否为空
+  isEmpty() {
+    return this.length === 0;
+  }
+
+  // size() 获取链表的长度
+  size() {
+    return this.length;
+  }
+  // 字符化
+  toString() {
+    let currentNode = this.head;
+    let res = "";
+    while (currentNode) {
+      res += currentNode.data + "   ";
+      currentNode = currentNode.next;
+    }
+    return res;
+  }
 }
+
+// class LinkedList  {
+//   // 初始长度
+//   length = 0
+//   // 初始项
+//   head = null
+//   // 内部类
+//   Node = class {
+//     data;
+//     next = null;
+//     constructor (data) {
+//       this.data = data
+//     }
+//   }
+
+//    // append() 往链表尾部追加数据
+//   append(data) {
+//     // 1、创建新节点
+//     const newNode = new this.Node(data);
+
+//     // 2、追加新节点
+//     if (this.length === 0) {
+//       // 链表长度为 0 时，即只有 head 的时候
+//       this.head = newNode;
+//     } else {
+//       // 链表长度大于 0 时，在最后面添加新节点
+//       let currentNode = this.head;
+
+//       // 当 currentNode.next 不为空时，
+//       // 循序依次找最后一个节点，即节点的 next 为 null 时
+//       while (currentNode.next !== null) {
+//         currentNode = currentNode.next;
+//       }
+
+//       // 最后一个节点的 next 指向新节点
+//       currentNode.next = newNode;
+//     }
+
+//     // 3、追加完新节点后，链表长度 + 1
+//     this.length++;
+//   }
+
+//   toString() {
+//     let currentNode = this.head;
+//     let result = '';
+
+//     // 遍历所有的节点，拼接为字符串，直到节点为 null
+//     while (currentNode) {
+//     result += currentNode.data + ' ';
+//     currentNode = currentNode.next;
+//     }
+
+//     return result;
+// }
+
+// }
 
 import pageFram from "@/components/common/page-fram.vue";
 export default {
@@ -266,7 +440,7 @@ export default {
       let functionName = "priorityQueue" + func;
       this[functionName]();
     },
-    link (func) {
+    link(func) {
       let functionName = "link" + func;
       this[functionName]();
     },
@@ -424,11 +598,46 @@ export default {
       console.log(priorityQueue.toString());
     },
     // 单向链表
-    linkInit () {
-     let list = new LinkedList()
-
-     console.log(list)
-    }
+    linkInit() {
+      let list = new LinkedList();
+      // 尾部插入
+      console.log("尾部插入");
+      list.append(1);
+      console.log(list.toString());
+      list.append(2);
+      console.log(list.toString());
+      list.append(3);
+      console.log(list.toString());
+      console.log("头部插入");
+      // 头部插入
+      list.insert(0, 0);
+      console.log(list.toString());
+      // 中部插入
+      list.insert(2, 222);
+      // 尾部插入
+      list.insert(5, "end");
+      console.log("get");
+      // get
+      console.log("3", list.get(3));
+      console.log("indexof");
+      // indexof
+      console.log("2", list.indexOf("2"));
+      console.log("updata");
+      // updata
+      list.update(0, 1111);
+      console.log(list.toString());
+      list.update(1, 1);
+      console.log(list.toString());
+      // removeAt
+      console.log("remove");
+      list.removeAt(0);
+      console.log("0---", list.toString());
+      list.removeAt(1);
+      console.log("1---", list.toString());
+      list.removeAt(2);
+      list.removeAt(2);
+      console.log(list.toString());
+    },
   },
 };
 </script>
