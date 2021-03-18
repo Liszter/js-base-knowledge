@@ -44,6 +44,26 @@
           }}</el-button>
         </template>
       </el-card>
+
+      <el-divider content-position="left">6. 集合</el-divider>
+      <el-card class="box-card">
+        <template v-for="(item, index) of sets">
+          <el-button :key="index" @click="set(item.value)">{{
+            item.label
+          }}</el-button>
+        </template>
+      </el-card>
+
+      <el-divider content-position="left">7. 哈希表</el-divider>
+      <el-card class="box-card">
+        <template v-for="(item, index) of hashs">
+          <el-button :key="index" @click="set(item.value)">{{
+            item.label
+          }}</el-button>
+        </template>
+      </el-card>
+
+
     </page-fram>
   </div>
 </template>
@@ -307,9 +327,9 @@ class LinkedList {
       }
       previousNode.next = previousNode.next.next;
     }
-    this.length--
+    this.length--;
   }
-    // remove() 删除指定 data 的节点
+  // remove() 删除指定 data 的节点
   remove(data) {
     this.removeAt(this.indexOf(data));
   }
@@ -335,61 +355,59 @@ class LinkedList {
   }
 }
 
-// class LinkedList  {
-//   // 初始长度
-//   length = 0
-//   // 初始项
-//   head = null
-//   // 内部类
-//   Node = class {
-//     data;
-//     next = null;
-//     constructor (data) {
-//       this.data = data
-//     }
-//   }
+// 集合
+/**
+ * 
+ * 
+ *  add(value) 向集合添加一个新的项。
+    remove(value) 从集合移除一个值。
+    has(value) 如果值在集合中，返回 true，否则返回 false。
+    clear() 移除集合中的所有项。
+    size() 返回集合所包含元素的数量。与数组的 length 属性类似。
+    values() 返回一个包含集合中所有值的数组。
+*/
+class Set {
+  constructor() {
+    this.items = {};
+  }
+  // add(value) 向集合添加一个新的项。
+  add(value) {
+    this.items[value] = "";
+  }
+  // remove(value) 从集合移除一个值。
+  remove(value) {
+    delete this.items[value];
+  }
+  // has(value) 如果值在集合中，返回 true，否则返回 false。
+  has(value) {
+    return this.items.hasOwnProperty(value);
+  }
+  // clear() 移除集合中的所有项。
+  clear() {
+    this.items = {};
+  }
+  // size() 返回集合所包含元素的数量。与数组的 length 属性类似。
+  size() {
+    return Object.keys(this.items).length;
+  }
+  // values() 返回一个包含集合中所有值的数组。
+  values() {
+    return Object.keys(this.items);
+  }
+}
 
-//    // append() 往链表尾部追加数据
-//   append(data) {
-//     // 1、创建新节点
-//     const newNode = new this.Node(data);
 
-//     // 2、追加新节点
-//     if (this.length === 0) {
-//       // 链表长度为 0 时，即只有 head 的时候
-//       this.head = newNode;
-//     } else {
-//       // 链表长度大于 0 时，在最后面添加新节点
-//       let currentNode = this.head;
+// 哈希表
+// 哈希函数   将一个值转换成一个下标值
+ class Hashset {
 
-//       // 当 currentNode.next 不为空时，
-//       // 循序依次找最后一个节点，即节点的 next 为 null 时
-//       while (currentNode.next !== null) {
-//         currentNode = currentNode.next;
-//       }
+ }
 
-//       // 最后一个节点的 next 指向新节点
-//       currentNode.next = newNode;
-//     }
+//  hash函数
+function StringToIndex () {
+  return ''
+}
 
-//     // 3、追加完新节点后，链表长度 + 1
-//     this.length++;
-//   }
-
-//   toString() {
-//     let currentNode = this.head;
-//     let result = '';
-
-//     // 遍历所有的节点，拼接为字符串，直到节点为 null
-//     while (currentNode) {
-//     result += currentNode.data + ' ';
-//     currentNode = currentNode.next;
-//     }
-
-//     return result;
-// }
-
-// }
 
 import pageFram from "@/components/common/page-fram.vue";
 export default {
@@ -416,6 +434,8 @@ export default {
       ],
       PriorityQueues: [{ label: "优先队列结构", value: "Init" }],
       links: [{ label: "单项链表", value: "Init" }],
+      sets: [{ label: "集合", value: "Init" }],
+      hashs: [{ label: "哈希表", value: "Init" }],
     };
   },
   created() {},
@@ -442,6 +462,15 @@ export default {
     },
     link(func) {
       let functionName = "link" + func;
+      this[functionName]();
+    },
+    set(func) {
+      let functionName = "set" + func;
+      this[functionName]();
+    },
+
+    hash(func) {
+      let functionName = "hash" + func;
       this[functionName]();
     },
 
@@ -638,6 +667,27 @@ export default {
       list.removeAt(2);
       console.log(list.toString());
     },
+
+    // 集合
+    setInit() {
+      let set = new Set();
+
+      console.log(set);
+
+      set.add(111);
+      set.add(1112);
+      set.add(1131);
+      set.remove(111);
+      console.log(set.has(1112));
+      console.log(set.has(1));
+      console.log(set.size());
+      console.log(set.values());
+    },
+
+    // hash哈希表
+    hashInit () {
+
+    }
   },
 };
 </script>

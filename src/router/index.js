@@ -39,6 +39,7 @@ const routes = [
   { path: '/learnJs/3_1', name: 'canvas', component: () => import('../views/learnJs/pages/3_1.vue')},
   { path: '/learnJs/3_2', name: 'canvas自由绘图', component: () => import('../views/learnJs/pages/3_2.vue')},
   { path: '/learnJs/4_1', name: '算法algorithm', component: () => import('../views/learnJs/pages/4_1.vue')},
+  { path: '/learnJs/5_1', name: '面经', component: () => import('../views/learnJs/pages/5_1.vue')},
   // es6
   { path: '/learnES6', name: 'learnES6', component: () => import(/* webpackChunkName: "about" */ '../views/learnES6')},
   { path: '/learnES6/1_1', name: 'class用法', component: () => import('../views/learnES6/pages/1_1.vue')},
